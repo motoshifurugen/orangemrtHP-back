@@ -16,7 +16,7 @@ class LetterController extends Controller
      */
     public function index()
     {
-        //
+        return Letter::all();
     }
 
     /**
@@ -27,7 +27,7 @@ class LetterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Letter::create($request->all());
     }
 
     /**
@@ -36,9 +36,9 @@ class LetterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Letter $letter)
     {
-        //
+        return $letter;
     }
 
     /**
@@ -48,9 +48,10 @@ class LetterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Letter $letter)
     {
-        //
+        $letter->update($request->all());
+        return $letter;
     }
 
     /**
@@ -59,8 +60,9 @@ class LetterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Letter $letter)
     {
-        //
+        $letter->delete();
+        return $letter;
     }
 }
