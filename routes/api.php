@@ -27,3 +27,6 @@ Route::post('/letters', 'App\Http\Controllers\API\LetterController@store');
 Route::put('/letters/{letter}', 'App\Http\Controllers\API\LetterController@update');
 
 Route::delete('/letters/{letter}', 'App\Http\Controllers\API\LetterController@destroy');
+
+Route::post('/login', 'App\Http\Controllers\API\LoginController@index');
+
