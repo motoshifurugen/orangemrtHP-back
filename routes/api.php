@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Leaflet;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,4 +31,17 @@ Route::put('/letters/{letter}', 'App\Http\Controllers\API\LetterController@updat
 Route::delete('/letters/{letter}', 'App\Http\Controllers\API\LetterController@destroy');
 
 Route::post('/login', 'App\Http\Controllers\API\LoginController@login');
+
+Route::post('/upload',function(){
+    $file_name = request()->file->getClientOriginalName();
+    request()->file->storeAs('public/',$file_name);
+    $leaflet = Leaflet::find(1);
+    $leaflet->update(['file_path' => 'http://cocoahearts.xsrv.jp/storage/'.$file_name]);
+    return $leaflet;
+});
+
+Route::get('/upload',function(){
+    $leaflet = Leaflet::find(1);
+    return $leaflet;
+});
 
