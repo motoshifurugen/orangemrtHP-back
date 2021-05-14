@@ -30,3 +30,9 @@ Route::delete('/letters/{letter}', 'App\Http\Controllers\API\LetterController@de
 
 Route::post('/login', 'App\Http\Controllers\API\LoginController@login');
 
+Route::post('/upload',function(){
+    $file_name = request()->file->getClientOriginalName();
+    request()->file->storeAs('public/',$file_name);
+    return $file_name;
+});
+
