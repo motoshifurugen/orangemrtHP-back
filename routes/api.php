@@ -36,7 +36,7 @@ Route::post('/upload',function(){
     $file_name = request()->file->getClientOriginalName();
     request()->file->storeAs('public/',$file_name);
     $leaflet = Leaflet::find(1);
-    $leaflet->update(['file_path' => 'http://cocoahearts.xsrv.jp/storage/'.$file_name]);
+    $leaflet->update(['file_path' => '/storage/'.$file_name]);
     return $leaflet;
 });
 
